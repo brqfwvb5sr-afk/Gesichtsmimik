@@ -24,6 +24,7 @@ _Der Platzhalter wird in einer späteren Version durch einen aktuellen Produkt-S
 - heller und dunkler Modus, responsive Navigation und mobile Aufnahmeoberfläche
 - lokales Löschen aller Kalibrierungs- und Analysedaten
 - keine Werbung, kein Tracking, keine externe KI-API und kein Backend
+- vorgeschalteter einfacher Zugangscode für den privaten Testbetrieb
 
 ## Technologien
 
@@ -73,6 +74,10 @@ Vite verwendet den Basis-Pfad `/Gesichtsmimik/`. Die App nutzt `HashRouter`, dam
 - Das GitHub-Repository enthält keine personenbezogenen Analysedaten.
 - Die MediaPipe-WASM-Laufzeit wird mit der Website ausgeliefert. Nur das statische Gesichtsmodell wird beim ersten Start aus dem offiziellen öffentlichen Modell-Speicher geladen; die eigentlichen Medienströme werden nicht dorthin übertragen.
 - Andere Personen dürfen nur mit ausdrücklicher, informierter Einwilligung analysiert werden.
+
+## Zugangsschutz
+
+Vor der Anwendung erscheint eine clientseitige Codeabfrage. Die Freigabe wird nur in `sessionStorage` gespeichert und endet mit der Browser-Sitzung. Weil GitHub Pages ausschliesslich statische Dateien ausliefert, ist dieser Schutz nur eine Hürde für den privaten Testbetrieb und keine sichere Authentifizierung: Der Code ist grundsätzlich im ausgelieferten JavaScript auffindbar.
 
 ## Berechnung
 
