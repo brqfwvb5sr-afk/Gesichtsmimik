@@ -1,6 +1,7 @@
 import type { Baseline, DeviationResult, FeatureDifference, FeatureKey, RecordingMetrics } from '../types/analysis'
 import { FACE_FEATURES, FEATURE_LABELS, QUALITY_THRESHOLD, VOICE_FEATURES } from './constants'
 import { clamp, mean } from './statistics'
+import { calculateExperimentalInference } from './inference'
 
 function differencesFor(keys: FeatureKey[], recording: RecordingMetrics, baseline: Baseline): FeatureDifference[] {
   return keys.flatMap((key) => {
@@ -52,5 +53,6 @@ export function calculateDeviation(recording: RecordingMetrics, baseline: Baseli
     differences: all.slice(0, 6),
     technicalProblems: recording.technicalProblems,
     insufficientQuality,
+    experimentalInference: calculateExperimentalInference(recording, baseline),
   }
 }

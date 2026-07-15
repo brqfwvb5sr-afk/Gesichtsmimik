@@ -1,4 +1,4 @@
-import { Activity, AudioLines, Gauge, ScanFace } from 'lucide-react'
+import { Activity, AudioLines, Brain, Gauge, ScanFace } from 'lucide-react'
 import { Disclaimer } from '../components/Disclaimer'
 
 export function ExplanationPage() {
@@ -10,6 +10,7 @@ export function ExplanationPage() {
         <article><span><AudioLines /></span><div><h2>Optionale Stimmmerkmale</h2><p>Ohne Transkription misst die App Lautstärke, Schwankungen, Pausen, Antwortbeginn und eine grobe Veränderung der Tonhöhe. Das Mikrofon kann jederzeit ausgeschaltet werden.</p></div></article>
         <article><span><Activity /></span><div><h2>Robuste persönliche Baseline</h2><p>Median und Median Absolute Deviation bilden typische Werte und Schwankungsbereiche. Fehlende oder qualitativ schlechte Messungen werden ignoriert oder geringer gewichtet.</p></div></article>
         <article><span><Gauge /></span><div><h2>Abweichungswert</h2><p>Der Prozentwert beschreibt nur die Stärke gemessener Unterschiede. Er ist keine wissenschaftliche Wahrscheinlichkeit und darf nicht zur Beurteilung der Wahrheit einer Aussage verwendet werden.</p></div></article>
+        <article><span><Brain /></span><div><h2>Experimentelle Tendenz</h2><p>Nach der Kalibrierung vergleicht ein kleines persönliches Modell die neue Aufnahme mit deinen bekannten erfundenen und wahrheitsgemässen Beispielen. Angezeigt wird „eher erfunden“, „eher wahrheitsgemäss“ oder „unklar“. Diese Tendenz ist keine Lügendiagnose und kann falsch sein.</p></div></article>
       </div>
       <Disclaimer />
     </div>

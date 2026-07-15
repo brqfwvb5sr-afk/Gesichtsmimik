@@ -8,13 +8,14 @@ export type RecorderStatus = 'idle' | 'loading' | 'ready' | 'countdown' | 'recor
 
 export function useRecorder(question: string, microphoneEnabled: boolean, onComplete: (recording: RecordingMetrics) => void) {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const overlayRef = useRef<HTMLCanvasElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
   const faceRef = useRef<FaceAnalyzer | null>(null)
   const audioRef = useRef<AudioAnalyzer | null>(null)
   const [status, setStatus] = useState<RecorderStatus>('idle')
   const [error, setError] = useState('')
   const [countdown, setCountdown] = useState(3)
-  const [remaining, setRemaining] = useState(10)
+  const [remaining, setRemaining] = useState(12)
 
   const prepare = useCallback(async () => {
     setStatus('loading'); setError('')
@@ -48,9 +49,9 @@ export function useRecorder(question: string, microphoneEnabled: boolean, onComp
       setCountdown(value)
       if (value <= 0) {
         window.clearInterval(countdownTimer)
-        setStatus('recording'); setRemaining(10)
+        setStatus('recording'); setRemaining(12)
         const startedAt = performance.now()
-        faceRef.current!.start(videoRef.current!)
+        faceRef.current!.start(videoRef.current!, overlayRef.current)
         if (microphoneEnabled && streamRef.current!.getAudioTracks().length) {
           const audio = new AudioAnalyzer()
           audioRef.current = audio
@@ -58,8 +59,8 @@ export function useRecorder(question: string, microphoneEnabled: boolean, onComp
         }
         const progressTimer = window.setInterval(() => {
           const elapsed = performance.now() - startedAt
-          setRemaining(Math.max(0, Math.ceil((10000 - elapsed) / 1000)))
-          if (elapsed >= 10000) {
+          setRemaining(Math.max(0, Math.ceil((12000 - elapsed) / 1000)))
+          if (elapsed >= 12000) {
             window.clearInterval(progressTimer)
             setStatus('processing')
             const faceRecording = faceRef.current!.stop(question, elapsed)
@@ -76,5 +77,5 @@ export function useRecorder(question: string, microphoneEnabled: boolean, onComp
     stopMedia(streamRef.current)
   }, [])
 
-  return { videoRef, status, error, countdown, remaining, prepare, begin }
+  return { videoRef, overlayRef, status, error, countdown, remaining, prepare, begin }
 }

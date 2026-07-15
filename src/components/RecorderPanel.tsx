@@ -12,6 +12,8 @@ export function RecorderPanel({ question, microphoneEnabled, onComplete }: {
     <div className="recorder">
       <div className="video-frame">
         <video ref={recorder.videoRef} muted playsInline aria-label="Kameravorschau" />
+        <canvas ref={recorder.overlayRef} className="face-mesh" aria-hidden="true" />
+        {(recorder.status === 'ready' || recorder.status === 'recording') && <div className="tracking-hud" aria-hidden="true"><i /><i /><i /><i /><span>FACE · LOCAL TRACKING</span></div>}
         {recorder.status === 'idle' && <div className="video-placeholder"><Camera /><span>Kamera noch nicht gestartet</span></div>}
         {recorder.status === 'loading' && <div className="video-overlay"><LoaderCircle className="spin" /><span>MediaPipe wird lokal vorbereitet …</span></div>}
         {recorder.status === 'countdown' && <div className="countdown" aria-live="assertive">{recorder.countdown}</div>}

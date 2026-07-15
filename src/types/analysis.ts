@@ -69,6 +69,20 @@ export interface Baseline {
   createdAt: string
   sampleCount: number
   features: Partial<Record<FeatureKey, FeatureBaseline>>
+  calibrationModel?: CalibrationModel
+}
+
+export interface CalibrationClassProfile {
+  sampleCount: number
+  features: Partial<Record<FeatureKey, FeatureBaseline>>
+}
+
+export interface CalibrationModel {
+  truthful: CalibrationClassProfile
+  invented: CalibrationClassProfile
+  weights: Partial<Record<FeatureKey, number>>
+  usableFeatures: number
+  separation: number
 }
 
 export interface FeatureDifference {
@@ -89,6 +103,16 @@ export interface DeviationResult {
   differences: FeatureDifference[]
   technicalProblems: string[]
   insufficientQuality: boolean
+  experimentalInference: ExperimentalInference
+}
+
+export interface ExperimentalInference {
+  available: boolean
+  score: number | null
+  verdict: 'truthful' | 'invented' | 'unclear'
+  confidence: 'low' | 'medium'
+  reliability: number
+  evidence: string[]
 }
 
 export interface AppSettings {

@@ -17,7 +17,13 @@ type AppContextValue = StoredState & {
 const AppContext = createContext<AppContextValue | null>(null)
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<StoredState>(() => loadState())
+  const [state, setState] = useState<StoredState>(() => {
+    const stored = loadState()
+    if (stored.calibration.length >= 6 && !stored.baseline?.calibrationModel) {
+      return { ...stored, baseline: calculateBaseline(stored.calibration) }
+    }
+    return stored
+  })
 
   useEffect(() => { saveState(state) }, [state])
   useEffect(() => {

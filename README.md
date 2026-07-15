@@ -17,11 +17,13 @@ _Der Platzhalter wird in einer späteren Version durch einen aktuellen Produkt-S
 - Messung von Blinzeln, Augenöffnung, Augenbrauen-, Mund-, Kiefer- und Kopfbewegungen
 - optionale lokale Web-Audio-Analyse für Lautstärke, Pausen, Antwortbeginn und grobe Tonhöhenschwankung
 - robuste persönliche Baseline mit Median und Median Absolute Deviation (MAD)
+- experimentelles persönliches Ähnlichkeitsmodell für „eher erfunden“, „eher wahrheitsgemäss“ oder „unklar“
 - qualitätsgewichteter, begrenzter **Abweichungswert** – keine Wahrscheinlichkeit
 - eigener Qualitätswert für Sichtbarkeit, Licht, Bildrate, Position, Dauer und optional Audio
 - Verzicht auf präzise Ergebniswerte bei unzureichender Aufnahmequalität
 - lokale Verlaufsliste und SVG-Diagramme
 - heller und dunkler Modus, responsive Navigation und mobile Aufnahmeoberfläche
+- futuristisches lokales Face-Mesh während der Aufnahme
 - lokales Löschen aller Kalibrierungs- und Analysedaten
 - keine Werbung, kein Tracking, keine externe KI-API und kein Backend
 - vorgeschalteter einfacher Zugangscode für den privaten Testbetrieb
@@ -83,11 +85,15 @@ Vor der Anwendung erscheint eine clientseitige Codeabfrage. Die Freigabe wird nu
 
 Für jedes ausreichend oft gemessene Merkmal wird der Median als persönlicher Mittelpunkt bestimmt. Die typische Streuung wird aus der skalierten Median Absolute Deviation abgeleitet. Eine neue Aufnahme wird mittels begrenzter robuster Abstände mit diesem Bereich verglichen. Fehlende Werte werden ausgelassen, extreme Ausreisser begrenzt und schlechte Aufnahmequalität reduziert die Verlässlichkeit. Unterhalb der Qualitätsschwelle wird überhaupt kein präziser Prozentwert angezeigt.
 
+Zusätzlich werden getrennte persönliche Profile aus den bekannten wahrheitsgemässen und erfundenen Kalibrierungsaufnahmen gebildet. Merkmale, die sich während der Kalibrierung stärker unterscheiden, erhalten ein höheres Gewicht. Eine neue Aufnahme wird mit beiden Profilen verglichen. Geringe Datenqualität, schwache Trennung oder widersprüchliche Signale führen zu „unklar“. Der angezeigte Tendenzwert ist bewusst keine Wahrscheinlichkeit.
+
 Der Wert ist ein **Abweichungswert** und keine Lügen-, Wahrheits- oder Täuschungswahrscheinlichkeit.
 
 ## Wissenschaftliche Grenzen
 
 - Verhalten ist kontextabhängig und nicht eindeutig mit Wahrheit oder Täuschung verknüpft.
+- Mit nur zwei erfundenen und vier wahrheitsgemässen Beispielen ist das persönliche Modell sehr klein und kann leicht überangepasst sein.
+- Die App versteht den Inhalt der gesprochenen Aussage nicht. Sie erkennt daher nicht, ob eine Behauptung sachlich unmöglich oder offensichtlich erfunden ist.
 - Eine normale Webcam erfasst schnelle Gesichtsvorgänge oft nicht mit ausreichender Bildrate. Die App nennt solche Vorgänge deshalb nicht automatisch „Mikroexpressionen“.
 - MediaPipe-Blendshapes sind Schätzwerte und können durch Gesichtswinkel, Verdeckung, Brille, Hautbeleuchtung und Kameraqualität beeinflusst werden.
 - Die einfache Tonhöhenschätzung ist bei Hintergrundgeräusch, Flüstern und manchen Stimmen unzuverlässig.

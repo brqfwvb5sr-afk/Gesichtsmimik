@@ -30,7 +30,7 @@ export function CalibrationPage() {
       <div className="progress-track"><span style={{ width: `${progress}%` }} /></div>
       <div className="step-dots">{steps.map((item, itemIndex) => <span key={item.question} className={itemIndex < calibration.length ? 'done' : itemIndex === calibration.length ? 'active' : ''}>{itemIndex < calibration.length ? <Check /> : itemIndex + 1}</span>)}</div>
       {complete ? (
-        <div className="completion-panel"><Check /><h2>Sechs Vergleichsaufnahmen sind bereit</h2><p>Jetzt kann die robuste persönliche Baseline berechnet werden. Die internen Kategorien werden nur zur abwechslungsreichen Kalibrierung genutzt – nicht zum Training eines Wahr/Falsch-Systems.</p><button className="button primary" onClick={finish}>Baseline berechnen und analysieren</button></div>
+        <div className="completion-panel"><Check /><h2>Sechs Vergleichsaufnahmen sind bereit</h2><p>Jetzt werden eine robuste Baseline und ein experimentelles persönliches Ähnlichkeitsmodell berechnet. Es vergleicht spätere Aufnahmen mit deinen bekannten wahrheitsgemässen und erfundenen Mustern, kann sich aber irren.</p><button className="button primary" onClick={finish}>Vergleichsmodell berechnen</button></div>
       ) : (
         <div className="calibration-grid">
           <div className="prompt-panel"><span>Deine Frage</span><h2>{step.question}</h2><p>{step.instruction}</p><div className="prompt-tip">Beginne erst nach dem Countdown zu sprechen. Bleibe während der Aufnahme im Bild.</div></div>
