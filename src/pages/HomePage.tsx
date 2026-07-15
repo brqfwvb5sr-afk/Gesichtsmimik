@@ -26,7 +26,7 @@ export function HomePage() {
       </section>
       <Disclaimer />
       <section className="how-strip">
-        <div><span>01</span><h3>Kalibrieren</h3><p>Sechs kurze Aussagen bilden deinen persönlichen Vergleichsbereich.</p></div>
+        <div><span>01</span><h3>Kalibrieren</h3><p>Acht kurze Aussagen bilden einen ausgewogenen persönlichen Vergleichsbereich.</p></div>
         <div><span>02</span><h3>Aufnehmen</h3><p>MediaPipe und Web Audio messen ausgewählte Veränderungen lokal.</p></div>
         <div><span>03</span><h3>Vergleichen</h3><p>Du erhältst einen Abweichungswert und eine Qualitätsbewertung.</p></div>
       </section>

@@ -6,7 +6,7 @@ type Signal = { key: FeatureKey; support: number }
 
 export function calculateExperimentalInference(recording: RecordingMetrics, baseline: Baseline): ExperimentalInference {
   const model = baseline.calibrationModel
-  if (!model || model.truthful.sampleCount < 3 || model.invented.sampleCount < 2) {
+  if (!model || model.truthful.sampleCount < 3 || model.invented.sampleCount < 3) {
     return { available: false, score: null, verdict: 'unclear', confidence: 'low', reliability: 0, evidence: [] }
   }
 

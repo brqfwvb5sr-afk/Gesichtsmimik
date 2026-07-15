@@ -13,6 +13,8 @@ const steps: Array<{ question: string; instruction: string; category: Calibratio
   { question: 'Behaupte, du seist gestern auf dem Mond gewesen.', instruction: 'Erzähle die harmlose erfundene Geschichte weiter.', category: 'invented' },
   { question: 'Erzähle von etwas, das dich gefreut hat.', instruction: 'Antworte wahrheitsgemäss und etwas emotionaler.', category: 'emotional' },
   { question: 'Was siehst du gerade vor dir?', instruction: 'Schliesse mit einer weiteren neutralen Aussage ab.', category: 'neutral' },
+  { question: 'Behaupte, du hättest heute einen Drachen gesehen.', instruction: 'Erfinde bewusst Details zu dieser unmöglichen Begegnung.', category: 'invented' },
+  { question: 'Erfinde eine harmlose Geschichte über deinen gestrigen Abend.', instruction: 'Erzähle sie so natürlich wie möglich, ohne reale Ereignisse zu verwenden.', category: 'invented' },
 ]
 
 export function CalibrationPage() {
@@ -30,7 +32,7 @@ export function CalibrationPage() {
       <div className="progress-track"><span style={{ width: `${progress}%` }} /></div>
       <div className="step-dots">{steps.map((item, itemIndex) => <span key={item.question} className={itemIndex < calibration.length ? 'done' : itemIndex === calibration.length ? 'active' : ''}>{itemIndex < calibration.length ? <Check /> : itemIndex + 1}</span>)}</div>
       {complete ? (
-        <div className="completion-panel"><Check /><h2>Sechs Vergleichsaufnahmen sind bereit</h2><p>Jetzt werden eine robuste Baseline und ein experimentelles persönliches Ähnlichkeitsmodell berechnet. Es vergleicht spätere Aufnahmen mit deinen bekannten wahrheitsgemässen und erfundenen Mustern, kann sich aber irren.</p><button className="button primary" onClick={finish}>Vergleichsmodell berechnen</button></div>
+        <div className="completion-panel"><Check /><h2>Acht Vergleichsaufnahmen sind bereit</h2><p>Jetzt werden eine robuste Baseline und ein ausgewogenes experimentelles Ähnlichkeitsmodell aus vier wahrheitsgemässen und vier erfundenen Beispielen berechnet. Es kann sich trotzdem irren.</p><button className="button primary" onClick={finish}>Vergleichsmodell berechnen</button></div>
       ) : (
         <div className="calibration-grid">
           <div className="prompt-panel"><span>Deine Frage</span><h2>{step.question}</h2><p>{step.instruction}</p><div className="prompt-tip">Beginne erst nach dem Countdown zu sprechen. Bleibe während der Aufnahme im Bild.</div></div>

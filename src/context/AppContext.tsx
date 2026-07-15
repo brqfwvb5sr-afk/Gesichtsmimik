@@ -19,7 +19,10 @@ const AppContext = createContext<AppContextValue | null>(null)
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<StoredState>(() => {
     const stored = loadState()
-    if (stored.calibration.length >= 6 && !stored.baseline?.calibrationModel) {
+    if (stored.calibration.length > 0 && stored.calibration.length < 8) {
+      return { ...stored, baseline: null }
+    }
+    if (stored.calibration.length >= 8 && !stored.baseline?.calibrationModel) {
       return { ...stored, baseline: calculateBaseline(stored.calibration) }
     }
     return stored
@@ -40,7 +43,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       calibration: [...current.calibration, { ...recording, category }],
     })),
     finishCalibration: () => {
-      if (state.calibration.length < 6) return false
+      if (state.calibration.length < 8) return false
       const baseline = calculateBaseline(state.calibration)
       setState((current) => ({ ...current, baseline }))
       return Object.keys(baseline.features).length >= 4

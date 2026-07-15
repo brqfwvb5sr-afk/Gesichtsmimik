@@ -12,7 +12,7 @@ _Der Platzhalter wird in einer späteren Version durch einen aktuellen Produkt-S
 
 ## Funktionen
 
-- geführte Kalibrierung mit sechs abwechslungsreichen Vergleichsaufnahmen
+- geführte, ausgewogene Kalibrierung mit acht Vergleichsaufnahmen: vier wahrheitsgemässe und vier erfundene
 - MediaPipe Face Landmarker mit Blendshapes und Kopf-Transformationen
 - Messung von Blinzeln, Augenöffnung, Augenbrauen-, Mund-, Kiefer- und Kopfbewegungen
 - optionale lokale Web-Audio-Analyse für Lautstärke, Pausen, Antwortbeginn und grobe Tonhöhenschwankung
@@ -92,7 +92,7 @@ Der Wert ist ein **Abweichungswert** und keine Lügen-, Wahrheits- oder Täuschu
 ## Wissenschaftliche Grenzen
 
 - Verhalten ist kontextabhängig und nicht eindeutig mit Wahrheit oder Täuschung verknüpft.
-- Mit nur zwei erfundenen und vier wahrheitsgemässen Beispielen ist das persönliche Modell sehr klein und kann leicht überangepasst sein.
+- Mit vier erfundenen und vier wahrheitsgemässen Beispielen bleibt das persönliche Modell klein und kann überangepasst sein.
 - Die App versteht den Inhalt der gesprochenen Aussage nicht. Sie erkennt daher nicht, ob eine Behauptung sachlich unmöglich oder offensichtlich erfunden ist.
 - Eine normale Webcam erfasst schnelle Gesichtsvorgänge oft nicht mit ausreichender Bildrate. Die App nennt solche Vorgänge deshalb nicht automatisch „Mikroexpressionen“.
 - MediaPipe-Blendshapes sind Schätzwerte und können durch Gesichtswinkel, Verdeckung, Brille, Hautbeleuchtung und Kameraqualität beeinflusst werden.

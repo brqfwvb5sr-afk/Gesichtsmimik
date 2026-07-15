@@ -23,7 +23,12 @@ const inventedFeatures = (offset = 0) => ({
 })
 
 const calibration: RecordingMetrics[] = [0, 1, 2, 3].map((offset) => recording({ category: offset === 2 ? 'emotional' : 'neutral', features: truthFeatures(offset) }))
-calibration.push(recording({ category: 'invented', features: inventedFeatures(0) }), recording({ category: 'invented', features: inventedFeatures(2) }))
+calibration.push(
+  recording({ category: 'invented', features: inventedFeatures(0) }),
+  recording({ category: 'invented', features: inventedFeatures(1) }),
+  recording({ category: 'invented', features: inventedFeatures(2) }),
+  recording({ category: 'invented', features: inventedFeatures(3) }),
+)
 const baseline = calculateBaseline(calibration)
 
 describe('experimental calibration inference', () => {
